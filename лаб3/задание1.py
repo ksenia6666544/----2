@@ -23,7 +23,8 @@ class Book:
 class PaperBook(Book):
     def __init__(self, name: str, author: str, pages: int):
         super().__init__(name, author)
-        self._pages = pages
+        # Используем setter для проверки количества страниц
+        self.pages = pages
 
     @property
     def pages(self):
@@ -32,9 +33,9 @@ class PaperBook(Book):
     @pages.setter
     def pages(self, value):
         if not isinstance(value, int):
-            raise TypeError('Количество страниц должно быть целым числом')
+            raise TypeError("Количество страниц должно быть целым числом")
         elif value <= 0:
-            raise ValueError('Количество страниц должно быть положительным числом')
+            raise ValueError("Количество страниц должно быть положительным числом")
         self._pages = value
 
     def __str__(self):
@@ -47,7 +48,8 @@ class PaperBook(Book):
 class AudioBook(Book):
     def __init__(self, name: str, author: str, duration: float):
         super().__init__(name, author)
-        self._duration = duration
+        # Используем setter для проверки длительности аудиокниги
+        self.duration = duration
 
     @property
     def duration(self):
@@ -56,9 +58,9 @@ class AudioBook(Book):
     @duration.setter
     def duration(self, value):
         if not isinstance(value, float):
-            raise TypeError('Продолжительность должна быть вещественным числом')
+            raise TypeError("Продолжительность должна быть вещественным числом")
         elif value <= 0:
-            raise ValueError('Продолжительность должна быть положительной величиной')
+            raise ValueError("Продолжительность должна быть положительной величиной")
         self._duration = value
 
     def __str__(self):
@@ -66,3 +68,4 @@ class AudioBook(Book):
 
     def __repr__(self):
         return f"{self.__class__.__name__}(name={self.name!r}, author={self.author!r}, duration={self.duration})"
+
