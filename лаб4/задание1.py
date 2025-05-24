@@ -4,7 +4,7 @@ class Evergreen:
 
     Attributes:
         crown (str): Вид кроны дерева (например, овальная, конусообразная)
-        cone (str): Вид шишки дерева (например, удлиненная, округлая)
+        cone (str): Вид шишки дерева (например, удлинённая, округлая)
         tone (str): Цвет (оттенок) хвои (например, тёмный, светлый)
     """
 
@@ -40,23 +40,23 @@ class Pine(Evergreen):
         crown (str): Вид кроны дерева (унаследовано)
         cone (str): Вид шишки дерева (унаследовано)
         tone (str): Цвет (оттенок) хвои (унаследовано)
-        height (float): Высота дерева
+        height (int | float): Высота дерева
     """
 
-    def __init__(self, crown: str, cone: str, tone: str, height: float):
+    def __init__(self, crown: str, cone: str, tone: str, height: int | float):
         super().__init__(crown, cone, tone)
         self.height = height
 
     @property
-    def height(self) -> float:
+    def height(self) -> (int, float):
         return self._height
 
     @height.setter
-    def height(self, value: float):
+    def height(self, value: (int, float)):
         if not isinstance(value, (int, float)):
-            raise TypeError('Высота дерева должна быть числовой')
+            raise TypeError('Высота дерева должна быть целым или вещественным числом')
         if value <= 0:
-            raise ValueError('Высота дерева должна быть положительной')
+            raise ValueError('Высота дерева должна быть положительным числом')
         self._height = value
 
     def __str__(self) -> str:
@@ -67,27 +67,28 @@ class Pine(Evergreen):
 
     def cut_down_tree(self) -> str:
         """
-        Метод для обозначения процесса рубки дерева.
+        Срубает дерево
 
         Returns:
-            str: Сообщение о том, что дерево было срублено.
+            str: Строка, обозначающая срубку дерева.
         """
         return "Дерево срублено"
 
     def plant_tree(self) -> str:
         """
-        Метод для обозначения посадки дерева.
+        Сажает дерево
 
         Returns:
-            str: Сообщение о посадке дерева.
+            str: Строка, обозначающая посадку дерева.
         """
         return "Дерево посажено"
 
     def decorate_tree(self) -> str:
         """
-        Метод для украшения дерева.
+        Украшает дерево.
 
         Returns:
-            str: Сообщение о украшении дерева.
+            str: Строка, обозначающая украшение дерева.
         """
         return "Дерево украшено"
+
